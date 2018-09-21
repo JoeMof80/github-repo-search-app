@@ -4,7 +4,7 @@ import http from "./services/httpService";
 import { apiUrl } from "./config.json";
 import RepoList from "./components/repoList";
 import RepoSearchForm from "./components/repoSearchForm";
-
+import NotFound from "./components/notFound";
 import "./App.css";
 
 class App extends Component {
@@ -67,6 +67,7 @@ class App extends Component {
             </div>
             <Switch>
               <Route path="/repos" render={this.renderRepos} />
+              <Route path="/not-found" component={NotFound} />
               <Redirect from="/" exact to="/repos" />
               <Redirect to="/not-found" />
             </Switch>
