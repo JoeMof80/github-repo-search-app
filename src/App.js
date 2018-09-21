@@ -68,6 +68,7 @@ class App extends Component {
             <Switch>
               <Route path="/repos" render={this.renderRepos} />
               <Redirect from="/" exact to="/repos" />
+              <Redirect to="/not-found" />
             </Switch>
           </div>
         </main>
