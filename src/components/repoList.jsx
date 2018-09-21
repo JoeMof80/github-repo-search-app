@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RepoDetail from "./repoDetail";
 import Pagination from "./common/pagination";
+import reposImg from "../repos.svg";
 
 class Repos extends Component {
   state = {
@@ -25,8 +26,14 @@ class Repos extends Component {
 
   render() {
     const { selectedRepo, currentPage } = this.state;
-    const { repos, totalCount, pageSize } = this.props;
+    const { loading, repos, totalCount, pageSize } = this.props;
 
+    if (loading)
+      return (
+        <div className="col-4 border-right">
+          <img src={reposImg} alt="repos" />
+        </div>
+      );
     if (!repos.length)
       return (
         <div className="col-4 border-right">

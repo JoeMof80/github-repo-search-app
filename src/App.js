@@ -13,11 +13,12 @@ class App extends Component {
     selectedRepo: "",
     pageSize: 10,
     searchQuery: "",
-    totalCount: 0
+    totalCount: 0,
+    loading: false
   };
 
   handleSearch = async (data, currentPage = 1) => {
-    this.setState({ searchQuery: data });
+    this.setState({ searchQuery: data, loading: true });
 
     const { data: repos } = await http.get(
       `${apiUrl}?q=${data.query}&sort=${data.sort}&order=${
@@ -27,7 +28,8 @@ class App extends Component {
     this.setState({
       repos: repos.items,
       selectedRepo: "",
-      totalCount: repos.total_count
+      totalCount: repos.total_count,
+      loading: false
     });
   };
 
@@ -40,10 +42,11 @@ class App extends Component {
   };
 
   renderRepos = () => {
-    const { repos, pageSize, totalCount, selectedRepo } = this.state;
+    const { loading, repos, pageSize, totalCount, selectedRepo } = this.state;
 
     return (
       <RepoList
+        loading={loading}
         repos={repos}
         pageSize={pageSize}
         totalCount={totalCount}
