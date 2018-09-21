@@ -1,0 +1,11 @@
+#repos .list-group-item {
+  cursor: pointer;
+}
+
+#repos .list-group-item.active {
+  color: #fff !important;
+}
+
+.text-grey {
+  color: #ddd !important;
+}
